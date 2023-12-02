@@ -1,0 +1,29 @@
+import { Box, Typography } from "@mui/material";
+
+function RoleInfo({
+  icon,
+  children,
+}: {
+  icon: React.ReactElement;
+  children: React.ReactNode;
+}) {
+  return (
+    <Box
+      sx={{
+        border: 1,
+        borderRadius: 1,
+        borderColor: "#2f343b",
+        display: "flex",
+        justifyContent: "space-between",
+        p: 1,
+        gap: 2,
+        flex: 1,
+      }}
+    >
+      {icon}
+      <Typography variant="body1">{children}</Typography>
+    </Box>
+  );
+}
+
+export default RoleInfo;
