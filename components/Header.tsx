@@ -55,6 +55,7 @@ function Header() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "block" },
+              cursor: "pointer",
             }}
           >
             <Link href="/">
