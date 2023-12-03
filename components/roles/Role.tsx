@@ -15,13 +15,12 @@ import {
 import { Box, Divider, Stack, capitalize } from "@mui/material";
 
 import { roles } from "@/utils";
-
 import {
-  RoleInfo,
-  RoleDetails,
-  Section,
   AUButton,
   ContainerBox,
+  RoleDetails,
+  RoleInfo,
+  Section,
 } from "@/components";
 
 function Role({ role }: { role: string }) {

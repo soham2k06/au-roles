@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Header, ThemeProvider, Background } from "@/components";
 import { Container } from "@mui/material";
+import { Background, Header, ThemeProvider } from "@/components";
 
 export const metadata: Metadata = {
   title: "ModMaze",

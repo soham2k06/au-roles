@@ -3,7 +3,7 @@
 import { Grid, capitalize } from "@mui/material";
 import Link from "next/link";
 import { useEffect } from "react";
-import { GlassButton, Section } from ".";
+import { GlassButton, Section } from "@/components";
 import { roles } from "@/utils";
 
 type RoleType = "crewmate" | "neutral" | "impostor" | "add-on";
@@ -12,7 +12,7 @@ interface MyComponentProps {
   roleType: RoleType;
 }
 
-function RoleType({ roleType }: MyComponentProps) {
+function Roles({ roleType }: MyComponentProps) {
   useEffect(() => {
     document.title = capitalize(`${roleType} roles`);
   }, []);
@@ -34,4 +34,4 @@ function RoleType({ roleType }: MyComponentProps) {
   );
 }
 
-export default RoleType;
+export default Roles;

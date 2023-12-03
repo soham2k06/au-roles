@@ -1,7 +1,7 @@
-import { RoleType } from "@/components";
+import { Roles } from "@/components";
 
 function page() {
-  return <RoleType roleType="crewmate" />;
+  return <Roles roleType="crewmate" />;
 }
 
 export default page;

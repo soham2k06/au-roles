@@ -1,6 +1,5 @@
-import { Typography, Container, Box } from "@mui/material";
-
 import Link from "next/link";
+import { Typography, Container, Box } from "@mui/material";
 import { AUButton } from "@/components";
 
 function Hero() {

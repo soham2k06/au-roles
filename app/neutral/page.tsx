@@ -1,7 +1,7 @@
-import { RoleType } from "@/components";
+import { Roles } from "@/components";
 
 function page() {
-  return <RoleType roleType="neutral" />;
+  return <Roles roleType="neutral" />;
 }
 
 export default page;

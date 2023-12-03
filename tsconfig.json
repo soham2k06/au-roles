@@ -30,7 +30,8 @@
     "utils/index.js",
     "utils/dbConntect.js",
     "utils/dbConntect.js",
-    "utils/constants/index.js"
+    "utils/constants/index.js",
+    "components/index.js"
   ],
   "exclude": ["node_modules"]
 }
