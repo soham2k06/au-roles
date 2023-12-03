@@ -10,6 +10,7 @@ import GlassButton from "./GlassButton";
 import ContainerBox from "./ContainerBox";
 import RoleType from "./RoleType";
 import Role from "./Role";
+import FullPageLoader from "./FullPageLoader";
 
 export {
   AUButton,
@@ -24,4 +25,5 @@ export {
   GlassButton,
   RoleType,
   Role,
+  FullPageLoader,
 };

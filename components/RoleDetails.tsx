@@ -24,6 +24,7 @@ function Title({ children }: { children: React.ReactNode }) {
       pb={0.5}
       mb={1}
       sx={{ userSelect: "none" }}
+      fontSize={{ xs: 24, md: 28 }}
     >
       {children}
     </Typography>

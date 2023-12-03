@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography, Container, Box } from "@mui/material";
 
 import Link from "next/link";

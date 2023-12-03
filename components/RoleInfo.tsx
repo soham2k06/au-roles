@@ -14,6 +14,7 @@ function RoleInfo({
         borderRadius: 1,
         borderColor: "#2f343b",
         display: "flex",
+        alignItems: "center",
         justifyContent: "space-between",
         p: 1,
         gap: 2,
@@ -21,7 +22,9 @@ function RoleInfo({
       }}
     >
       {icon}
-      <Typography variant="body1">{children}</Typography>
+      <Typography variant="body1" fontSize={{ xs: 20, md: 24 }}>
+        {children}
+      </Typography>
     </Box>
   );
 }

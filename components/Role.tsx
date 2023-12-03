@@ -12,9 +12,10 @@ import {
   Star,
   TipsAndUpdates,
 } from "@mui/icons-material";
-import { Box, Divider, Stack, Typography } from "@mui/material";
+import { Box, Divider, Stack, capitalize } from "@mui/material";
 
 import { roles } from "@/utils";
+
 import {
   RoleInfo,
   RoleDetails,
@@ -27,11 +28,16 @@ function Role({ role }: { role: string }) {
   const navigation = useRouter();
   const curRole = roles.find(({ name }) => name === role);
   useEffect(() => {
-    document.title = role;
+    document.title = capitalize(role);
   }, []);
   return (
     <Section>
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={2}
+      >
         <Section.Title gutterBottom={false}>
           {role.replace("-", " ")}
         </Section.Title>
@@ -43,33 +49,37 @@ function Role({ role }: { role: string }) {
           back
         </AUButton>
       </Box>
-      <Divider sx={{ my: 3 }} />
+      <Divider sx={{ my: 3, display: { xs: "none", md: "inline" } }} />
       <ContainerBox>
         <Box
           display="flex"
           flexDirection={{ xs: "column", md: "row" }}
           gap={{ xs: 1, md: 2 }}
         >
-          <RoleInfo icon={<Groups2 />}>{curRole?.team}</RoleInfo>
-          <RoleInfo icon={<CheckBox />}>
+          <RoleInfo icon={<Groups2 fontSize="small" />}>
+            {curRole?.team}
+          </RoleInfo>
+          <RoleInfo icon={<CheckBox fontSize="small" />}>
             {curRole?.isActive ? "Active" : "Inactive"}
           </RoleInfo>
-          <RoleInfo icon={<Category />}>{curRole?.ability}</RoleInfo>
+          <RoleInfo icon={<Category fontSize="small" />}>
+            {curRole?.ability}
+          </RoleInfo>
         </Box>
-        <Divider sx={{ my: 2 }} flexItem>
+        <Divider sx={{ my: { xs: 1, md: 2 } }} flexItem>
           <Star fontSize="small" />
         </Divider>
         <Stack spacing={2}>
           <RoleDetails>
             <RoleDetails.Title>
-              <Comment /> Description
+              <Comment fontSize="small" /> Description
             </RoleDetails.Title>
             <RoleDetails.Body>{curRole?.desc}</RoleDetails.Body>
           </RoleDetails>
           {!!curRole?.tips?.length && (
             <RoleDetails>
               <RoleDetails.Title>
-                <TipsAndUpdates /> Tips
+                <TipsAndUpdates fontSize="small" /> Tips
               </RoleDetails.Title>
               <RoleDetails.Body>
                 {curRole.tips.map((tip: string, i) => (

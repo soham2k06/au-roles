@@ -1,10 +1,10 @@
 "use client";
 
-import { roles } from "@/utils";
-import { Grid } from "@mui/material";
+import { Grid, capitalize } from "@mui/material";
 import Link from "next/link";
 import { useEffect } from "react";
 import { GlassButton, Section } from ".";
+import { roles } from "@/utils";
 
 type RoleType = "crewmate" | "neutral" | "impostor" | "add-on";
 
@@ -14,7 +14,7 @@ interface MyComponentProps {
 
 function RoleType({ roleType }: MyComponentProps) {
   useEffect(() => {
-    document.title = `${roleType} roles`;
+    document.title = capitalize(`${roleType} roles`);
   }, []);
   return (
     <Section>

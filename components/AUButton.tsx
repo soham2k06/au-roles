@@ -23,11 +23,12 @@ function AUButton({ children, ...props }: AUButtonProps) {
         ...props.sx,
         border: 2,
         color: "white",
-        px: 4,
+        px: { xs: 1, md: 4 },
         py: 1,
         lineHeight: 1,
         whiteSpace: "nowrap",
         overflow: "hidden",
+        fontSize: { xs: 18, md: 20 },
 
         ":hover": {
           border: 2,

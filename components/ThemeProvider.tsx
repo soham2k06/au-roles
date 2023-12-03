@@ -5,6 +5,7 @@ import {
   ThemeProvider as ThemeProviderMUI,
   createTheme,
 } from "@mui/material";
+
 import { Amatic_SC } from "next/font/google";
 
 const amaticSc = Amatic_SC({
