@@ -16,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo.ico" sizes="any" />
+      </head>
       <ThemeProvider>
         <body>
           <Background />
