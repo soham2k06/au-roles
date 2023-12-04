@@ -53,7 +53,7 @@ function Header() {
           <Avatar
             variant="rounded"
             sx={{
-              mr: 2,
+              // mr: 2,
               display: { xs: "none", md: "block" },
               cursor: "pointer",
             }}
@@ -64,27 +64,35 @@ function Header() {
           </Avatar>
 
           {/* Mobile logo */}
-          <Avatar
-            variant="rounded"
-            sx={{
-              display: { xs: "block", md: "none" },
-              width: 32,
-              height: 32,
-            }}
-          >
-            <Link href="/">
-              <Image src="/logo.png" width={32} height={32} alt="logo" />
-            </Link>
-          </Avatar>
+          <Box display={{ xs: "flex", md: "none" }} flexGrow={1}>
+            <Avatar
+              variant="rounded"
+              sx={{
+                display: "block",
+                width: 32,
+                height: 32,
+              }}
+            >
+              <Link href="/">
+                <Image src="/logo.png" width={32} height={32} alt="logo" />
+              </Link>
+            </Avatar>
+          </Box>
 
           {/* Mobile menu button */}
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              // order: -1
+            }}
+          >
             <IconButton
               color="inherit"
               size="large"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
+              sx={{ p: 0, pr: 2 }}
             >
               <MenuIcon fontSize="small" />
             </IconButton>
@@ -117,7 +125,12 @@ function Header() {
           </Box>
 
           {/* PC items */}
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              // flexGrow: 1
+            }}
+          >
             {appBarItems.map((item) => (
               <Link key={item} href={"/" + item}>
                 <Button
@@ -136,8 +149,12 @@ function Header() {
             ))}
           </Box>
 
-          {/* <Box display="flex" justifyContent="end" width="100%">
-            <SearchBar />
+          {/* <Box display="flex" justifyContent="end">
+            <Link href="/tips">
+              <GlassButton sx={{ height: { xs: 36, md: 48 } }}>
+                Tips
+              </GlassButton>
+            </Link>
           </Box> */}
         </Toolbar>
       </Container>
