@@ -1,5 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 function Background() {
+  const random = (min: number, max: number) =>
+    Math.floor(Math.random() * (max - min) + 1) + min;
+
   return (
     <Box
       sx={{
@@ -19,7 +22,8 @@ function Background() {
             height: 2,
             bgcolor: "white",
             borderRadius: "50%",
-            animation: "twinkle 2s infinite",
+            animation: "fly 25s linear infinite",
+            animationDuration: random(80, 120) + "s",
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             animationDelay: `${Math.random() * 2}s`,
