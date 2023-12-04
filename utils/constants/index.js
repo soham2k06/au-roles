@@ -5,8 +5,8 @@ const roles = [
     name: "bait",
     desc: "When killed, your killer will automatically self report. This includes Vampire kills when the killer isn’t in the area.",
     tips: [
-      "Claim this role.",
-      "Be aware of impostor until you claim to being bait.",
+      "Claim that you're bait at the first meeting of the game.",
+      "You can even call a meeting at the start of the game and say your bait if your scared of dying first",
       "Roam openly and try to be killed after claiming bait.",
     ],
     team: "crewmate",
@@ -16,7 +16,9 @@ const roles = [
   {
     name: "lighter",
     desc: "After completing tasks, you get increased vision.",
-    tips: [],
+    tips: [
+      "Complete one task and then you become helpful with information when the lights go out.",
+    ],
     team: "crewmate",
     ability: "buff",
     isActive: true,
@@ -24,7 +26,9 @@ const roles = [
   {
     name: "mayor",
     desc: "Your votes count thrice (depending on the settings). They can also call meetings by venting (depending on the settings).",
-    tips: [],
+    tips: [
+      "Try surviving till the end with less players because thats when you will be the most effective.",
+    ],
     team: "crewmate",
     ability: "authority",
     isActive: true,
@@ -40,18 +44,22 @@ const roles = [
   {
     name: "sheriff",
     desc: "Can kill impostors and whatever neutrals the host has chosen. Settings can dictate whether a misfire kills the crewmate as well.",
-    tips: ["Stay at scary place and spam kill button."],
+    tips: [
+      "Analyze people and if they move really weird or if they just walk around not doing tasks in the beginning.",
+      "Stay at scary place and spam kill button.",
+    ],
     team: "crewmate",
     ability: "elimination",
     isActive: true,
   },
   {
     name: "snitch",
-    desc: "After completing tasks, the impostors (also neutral killers depending on settings) are revealed to you.",
+    desc: "After completing tasks, the impostors (also neutral killers depending on settings) are revealed to you. You are also revealed even after you have the last task remaining (depends on settings).",
     tips: [
       "Call meeting after completing second last task if needed.",
-      "Tell one trustworthy to stay with you.",
       "Lie about being bait if needed.",
+      "Never claim it until you finish tasks",
+      "Save your last task as an easy one close to cafe so you can call the meeting as you complete it.",
     ],
     team: "crewmate",
     ability: "information",
@@ -68,7 +76,9 @@ const roles = [
   {
     name: "doctor",
     desc: "Reveals cause of death (kill, misfire, or lover suicide) and can check vitals similarly to the Scientist in vanilla Among Us.",
-    tips: ["claim your role."],
+    tips: [
+      "Try staying alive as long as possible to give the maximum amount of information.",
+    ],
     team: "crewmate",
     ability: "information",
     isActive: true,
@@ -114,6 +124,7 @@ const roles = [
     desc: "Douse people until everyone alive is covered in gas (indicated by orange triangles) to ignite and kill everyone via jumping into a vent.",
     tips: [
       "first of all, douse one at table itself.",
+      "The less people alive the better, you can wait and hide until people start dying",
       "close doors to infect properly.",
     ],
     team: "neutral",
@@ -125,6 +136,7 @@ const roles = [
     desc: "Get voted out to win.",
     tips: [
       "Don't claim you as impostor like beginners.",
+      "Don't dance on body in front of somebody.",
       "Stay at dead body, wait for someone to come and run from body within a sight of them. If that player reports then suddenly spam that its self.",
     ],
     team: "neutral",
@@ -173,6 +185,7 @@ const roles = [
     name: "executioner",
     desc: "Get your target (normally crew, alignment can be changed in settings) voted out to win. If target dies, executioner will become jester (depends on settings).",
     tips: [
+      "Try and frame ur target but dont frame then aggresively or else people will know your role instantly",
       "Act to be the snitch, do fake tasks and tell everyone to vote out your target. (be aware of them knowing the real snitch)",
     ],
     team: "neutral",
@@ -185,6 +198,9 @@ const roles = [
     tips: [
       "Go on killing spree.",
       "Extra tip (if you want to seriously win) - spy from vent, when you see someone killing, kill the killer.",
+      "Let impostors kill most of the people.",
+      "Defend impostors in the start.",
+      "Sometimes you can lie about being sheriff and kill impostor in front of all.",
       "Don't kill snitch.",
     ],
     team: "neutral",
@@ -193,11 +209,11 @@ const roles = [
   },
   {
     name: "plague-doctor",
-    desc: "The Plague Doctor starts by infecting 2 players by using their kill button and the goal of the plague doctor is to infect every living player starting by infecting 2 players and those 2 said players start infecting other players by spending a TOTAL time of 8 seconds. There are 4 stages to completely infect a player(A completely infected player can also infect, however a non fully infected player cant infect) Each stage is 2 seconds long and when the a player is fully infected they will have a FULL square filled up (color orange) when a player is half infected it will only show a HALF square filled up meaning a fully infected player spent 4 total seconds near a non fully infected player. (NOTE: 2 infections are configurale)",
+    desc: "The Plague Doctor starts by infecting 2 players by using their kill button and the goal of the plague doctor is to infect every living player starting by infecting 2 players and those 2 said players start infecting other players by spending a TOTAL time of 8 seconds. There are 4 stages to completely infect a player(A completely infected player can also infect, however a non fully infected player cant infect) Each stage is 2 seconds long and when the a player is fully infected they will have a FULL square filled up (color orange) when a player is half infected it will only show a HALF square filled up meaning a fully infected player spent 4 total seconds near a non fully infected player. (NOTE: number of infections are configurale)",
     tips: [
       "Use all infections as fast as possible.",
       "infect bait.",
-      "try to vote out non infected players (knowing their role).",
+      "try to vote out non infected players at last (knowing their role).",
       "use doors sabotaging.",
     ],
     team: "neutral",
@@ -233,7 +249,10 @@ const roles = [
   {
     name: "puppeteer",
     desc: "curse a target to do your killing for you. When they pass by someone, they’ll automatically kill. The victim can be another impostor.",
-    tips: ["Never puppet a jester or terrorist."],
+    tips: [
+      "Don't puppet a jester or terrorist.",
+      "Try puppetting a player near the bait.",
+    ],
     team: "impostor",
     ability: "illusion",
     isActive: true,
@@ -244,6 +263,7 @@ const roles = [
     tips: [
       "Curse the bait and beartrap.",
       "Try to curse in dark or in groups.",
+      "Try not to curse when player is alone with you.",
     ],
     team: "impostor",
     ability: "curse",
