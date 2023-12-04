@@ -18,6 +18,7 @@ function GlassButton({ children, ...props }: GlassButtonProps) {
     <Button
       variant="contained"
       sx={{
+        ...props.sx,
         width: "100%",
         bgcolor: "#2deac5",
         lineHeight: 1,
