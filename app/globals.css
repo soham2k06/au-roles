@@ -50,13 +50,12 @@ a {
   font-size: 28px !important;
 }
 
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 1;
+@keyframes fly {
+  0% {
+    transform: translateX(-100vw);
   }
-  50% {
-    opacity: 0.2;
+  100% {
+    transform: translateX(100vw);
   }
 }
 
