@@ -58,9 +58,9 @@ function Role({ role }: { role: string }) {
           <RoleInfo icon={<Groups2 fontSize="small" />}>
             {curRole?.team}
           </RoleInfo>
-          <RoleInfo icon={<CheckBox fontSize="small" />}>
+          {/* <RoleInfo icon={<CheckBox fontSize="small" />}>
             {curRole?.isActive ? "Active" : "Inactive"}
-          </RoleInfo>
+          </RoleInfo> */}
           <RoleInfo icon={<Category fontSize="small" />}>
             {curRole?.ability}
           </RoleInfo>
