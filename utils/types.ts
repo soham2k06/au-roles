@@ -20,6 +20,7 @@ export interface RoleErrors {
 }
 
 export interface AdminProps {
+  _id: ObjectId;
   name: string;
   password: string;
 }
