@@ -16,12 +16,21 @@ import {
   Button,
   Container,
   MenuList,
+  Skeleton,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { appBarItems } from "@/utils";
+import { usePathname } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import { GlassButton } from "..";
+import { appBarItems, getHomeHref } from "@/utils";
 
 function Header() {
+  const { status } = useSession();
+  const pathName = usePathname();
+
+  const homeHref = getHomeHref(status);
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -32,6 +41,7 @@ function Header() {
     setAnchorElNav(null);
   };
 
+  if (pathName.includes("signin")) return;
   return (
     <AppBar
       position="fixed"
@@ -45,26 +55,23 @@ function Header() {
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar
-          disableGutters
-          sx={{ display: "flex", justifyContent: "space-between" }}
-        >
+        <Toolbar disableGutters sx={{ display: "flex" }}>
           {/* PC logo */}
           <Avatar
             variant="rounded"
             sx={{
-              // mr: 2,
+              mr: 2,
               display: { xs: "none", md: "block" },
               cursor: "pointer",
             }}
           >
-            <Link href="/">
+            <Link href={homeHref}>
               <Image src="/logo.png" width={40} height={40} alt="logo" />
             </Link>
           </Avatar>
 
           {/* Mobile logo */}
-          <Box display={{ xs: "flex", md: "none" }} flexGrow={1}>
+          <Box display={{ xs: "flex", md: "none" }}>
             <Avatar
               variant="rounded"
               sx={{
@@ -73,7 +80,7 @@ function Header() {
                 height: 32,
               }}
             >
-              <Link href="/">
+              <Link href={homeHref}>
                 <Image src="/logo.png" width={32} height={32} alt="logo" />
               </Link>
             </Avatar>
@@ -83,7 +90,7 @@ function Header() {
           <Box
             sx={{
               display: { xs: "flex", md: "none" },
-              // order: -1
+              flexGrow: 1,
             }}
           >
             <IconButton
@@ -92,7 +99,6 @@ function Header() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              sx={{ p: 0, pr: 2 }}
             >
               <MenuIcon fontSize="small" />
             </IconButton>
@@ -116,7 +122,7 @@ function Header() {
                 {appBarItems.map((item) => (
                   <MenuItem key={item} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
-                      <Link href={"/" + item}>{item}</Link>
+                      <Link href={"/admin/" + item}>{item}</Link>
                     </Typography>
                   </MenuItem>
                 ))}
@@ -128,11 +134,11 @@ function Header() {
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              // flexGrow: 1
+              flexGrow: 1,
             }}
           >
             {appBarItems.map((item) => (
-              <Link key={item} href={"/" + item}>
+              <Link key={item} href={"/admin/" + item}>
                 <Button
                   color="inherit"
                   key={item}
@@ -149,13 +155,55 @@ function Header() {
             ))}
           </Box>
 
-          {/* <Box display="flex" justifyContent="end">
-            <Link href="/tips">
-              <GlassButton sx={{ height: { xs: 36, md: 48 } }}>
-                Tips
+          <Box display="flex">
+            {status === "loading" ? (
+              <Skeleton width={120} height={64} animation="wave"></Skeleton>
+            ) : status !== "authenticated" ? (
+              <Link href="https://discord.gg/8reVZ4WC6Q" target="_blank">
+                <Button
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 1,
+                    outline: "none",
+                    cursor: "pointer",
+                    borderRadius: "3px",
+                    fontSize: "16px",
+                    fontFamily: "sans-serif",
+                    textTransform: "capitalize",
+                    fontWeight: 500,
+                    lineHeight: "16px",
+                    padding: "2px 16px",
+                    height: "38px",
+                    minWidth: "96px",
+                    minHeight: "38px",
+                    border: "none",
+                    color: "#fff",
+                    bgcolor: "rgb(88, 101, 242)",
+                    transition: "background-color .17s ease,color .17s ease",
+                    ":hover": {
+                      bgcolor: "rgb(71, 82, 196)",
+                    },
+                  }}
+                >
+                  <Image
+                    src="/discord.png"
+                    alt="discord"
+                    width={24}
+                    height={20}
+                  />
+                  Server
+                </Button>
+              </Link>
+            ) : (
+              <GlassButton
+                sx={{ height: { xs: 36, md: 40 } }}
+                onClick={() => signOut()}
+              >
+                Sign out
               </GlassButton>
-            </Link>
-          </Box> */}
+            )}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

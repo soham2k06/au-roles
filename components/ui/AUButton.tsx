@@ -4,23 +4,22 @@ import { Button, ButtonProps } from "@mui/material";
 
 interface AUButtonProps extends ButtonProps {
   children: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  // onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 function AUButton({ children, ...props }: AUButtonProps) {
-  let audio: HTMLAudioElement;
+  // let audio: HTMLAudioElement;
 
-  try {
-    audio = new Audio("/audio/button.mp3");
-    audio.volume = 0.05;
-  } catch (error) {
-    console.error("Error creating Audio object:", error);
-  }
+  // try {
+  //   audio = new Audio("/audio/button.mp3");
+  //   audio.volume = 0.05;
+  // } catch (error) {
+  //   console.error("Error creating Audio object:", error);
+  // }
   return (
     <Button
       variant="outlined"
       sx={{
-        ...props.sx,
         border: 2,
         color: "white",
         px: { xs: 1, md: 4 },
@@ -36,12 +35,16 @@ function AUButton({ children, ...props }: AUButtonProps) {
         ":active": {
           borderColor: "lime",
         },
+
+        ...props.sx,
       }}
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         props.onClick?.(e);
-        audio.play();
+        // audio.play();
       }}
       disableRipple
+      type={props.type}
+      disabled={props.disabled}
     >
       {children}
     </Button>

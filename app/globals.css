@@ -8,6 +8,12 @@ html {
   font-size: 150%;
 }
 
+input,
+textarea {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  font-size: 75% !important;
+}
+
 body {
   overscroll-behavior: none;
 }
@@ -51,14 +57,29 @@ a {
 }
 
 @keyframes fly {
-  0% {
-    transform: translateX(-100vw);
+  from {
+    transform: translate3d(-100%, 0, 1px);
   }
-  100% {
-    transform: translateX(100vw);
+  to {
+    transform: translate3d(100vw, 0, 1px);
   }
 }
 
-.MuiList-root {
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.MuiList-root,
+.MuiPopper-root {
   background-color: #1a1e26;
 }

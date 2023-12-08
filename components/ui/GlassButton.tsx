@@ -6,19 +6,18 @@ interface GlassButtonProps extends ButtonProps {
 }
 
 function GlassButton({ children, ...props }: GlassButtonProps) {
-  let audio: HTMLAudioElement;
+  // let audio: HTMLAudioElement;
 
-  try {
-    audio = new Audio("/audio/button.mp3");
-    audio.volume = 0.05;
-  } catch (error) {
-    console.error("Error creating Audio object:", error);
-  }
+  // try {
+  //   audio = new Audio("/audio/button.mp3");
+  //   audio.volume = 0.05;
+  // } catch (error) {
+  //   console.error("Error creating Audio object:", error);
+  // }
   return (
     <Button
       variant="contained"
       sx={{
-        ...props.sx,
         width: "100%",
         bgcolor: "#2deac5",
         lineHeight: 1,
@@ -49,10 +48,11 @@ function GlassButton({ children, ...props }: GlassButtonProps) {
           transform: "skew(-30deg)",
           filter: "blur(1px)",
         },
+        ...props.sx,
       }}
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         props.onClick?.(e);
-        audio.play();
+        // audio.play();
       }}
     >
       <Typography

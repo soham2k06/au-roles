@@ -1,12 +1,15 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography, useMediaQuery } from "@mui/material";
 
 function RoleInfo({
-  icon,
   children,
+  isLoading,
+  icon,
 }: {
-  icon: React.ReactElement;
   children: React.ReactNode;
+  isLoading: boolean;
+  icon: React.ReactElement;
 }) {
+  const isSmallScreen = useMediaQuery("(max-width:900px)");
   return (
     <Box
       sx={{
@@ -21,10 +24,21 @@ function RoleInfo({
         flex: 1,
       }}
     >
-      {icon}
-      <Typography variant="body1" fontSize={{ xs: 20, md: 24 }}>
-        {children}
-      </Typography>
+      {isLoading ? (
+        <Skeleton
+          variant="rounded"
+          width="100%"
+          height={isSmallScreen ? 30 : 36}
+          animation="wave"
+        />
+      ) : (
+        <>
+          {icon}
+          <Typography variant="body1" fontSize={{ xs: 20, md: 24 }}>
+            {children}
+          </Typography>
+        </>
+      )}
     </Box>
   );
 }

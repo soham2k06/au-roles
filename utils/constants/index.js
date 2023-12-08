@@ -11,6 +11,7 @@ const roles = [
     ],
     team: "crewmate",
     ability: "trap",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -21,6 +22,7 @@ const roles = [
     ],
     team: "crewmate",
     ability: "buff",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -31,6 +33,7 @@ const roles = [
     ],
     team: "crewmate",
     ability: "authority",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -39,6 +42,7 @@ const roles = [
     tips: ["Stay near lights."],
     team: "crewmate",
     ability: "buff",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -50,6 +54,7 @@ const roles = [
     ],
     team: "crewmate",
     ability: "elimination",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -63,6 +68,7 @@ const roles = [
     ],
     team: "crewmate",
     ability: "information",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -71,6 +77,7 @@ const roles = [
     tips: [],
     team: "crewmate",
     ability: "buff",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -81,6 +88,7 @@ const roles = [
     ],
     team: "crewmate",
     ability: "information",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -89,6 +97,7 @@ const roles = [
     tips: ["claim your role."],
     team: "crewmate",
     ability: "trap",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -99,6 +108,7 @@ const roles = [
     ],
     team: "crewmate",
     ability: "authority",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -107,6 +117,7 @@ const roles = [
     tips: [],
     team: "crewmate",
     ability: "information",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -115,6 +126,7 @@ const roles = [
     tips: [],
     team: "crewmate",
     ability: "buff",
+    mod: "TOH",
     isActive: true,
   },
 
@@ -129,6 +141,7 @@ const roles = [
     ],
     team: "neutral",
     ability: "pollute",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -141,6 +154,7 @@ const roles = [
     ],
     team: "neutral",
     ability: "manipulation",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -152,6 +166,7 @@ const roles = [
     ],
     team: "neutral",
     ability: "survival",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -160,6 +175,7 @@ const roles = [
     tips: ["Use vents for finishing tasks fast!"],
     team: "neutral",
     ability: "suicide",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -171,6 +187,7 @@ const roles = [
     ],
     team: "neutral",
     ability: "adapt",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -179,6 +196,7 @@ const roles = [
     tips: ["Defend impostors."],
     team: "neutral",
     ability: "manipulation",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -190,6 +208,7 @@ const roles = [
     ],
     team: "neutral",
     ability: "manipulation",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -205,6 +224,7 @@ const roles = [
     ],
     team: "neutral",
     ability: "elimination",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -218,6 +238,7 @@ const roles = [
     ],
     team: "neutral",
     ability: "pollute",
+    mod: "TOH",
     isActive: true,
   },
 
@@ -228,6 +249,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "temporal",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -236,6 +258,7 @@ const roles = [
     tips: ["Claim the role of a dead player dishonestly."],
     team: "impostor",
     ability: "temporal",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -244,6 +267,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "gothic",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -255,6 +279,7 @@ const roles = [
     ],
     team: "impostor",
     ability: "illusion",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -267,6 +292,7 @@ const roles = [
     ],
     team: "impostor",
     ability: "curse",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -275,6 +301,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "pursuit",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -283,6 +310,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "time limit",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -291,6 +319,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "morph",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -299,6 +328,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "curse",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -307,6 +337,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "patience",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -315,6 +346,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "planning",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -323,6 +355,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "planning",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -331,6 +364,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "gothic",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -339,6 +373,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "buff",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -347,6 +382,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "information",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -355,6 +391,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "information",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -363,6 +400,7 @@ const roles = [
     tips: [],
     team: "impostor",
     ability: "information",
+    mod: "TOH",
     isActive: true,
   },
 
@@ -373,6 +411,7 @@ const roles = [
     tips: [],
     team: "add-on",
     ability: "survival",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -381,6 +420,7 @@ const roles = [
     tips: [],
     team: "add-on",
     ability: "buff",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -392,6 +432,7 @@ const roles = [
     ],
     team: "add-on",
     ability: "information",
+    mod: "TOH",
     isActive: true,
   },
   {
@@ -400,6 +441,7 @@ const roles = [
     tips: [],
     team: "add-on",
     ability: "tasks",
+    mod: "TOH",
     isActive: true,
   },
 ];

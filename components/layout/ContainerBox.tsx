@@ -1,6 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, BoxProps } from "@mui/material";
 
-function ContainerBox({ children }: { children: React.ReactNode }) {
+interface ContainerBoxProps extends BoxProps {
+  children: React.ReactNode;
+}
+
+function ContainerBox({ children, ...props }: ContainerBoxProps) {
   return (
     <Box
       bgcolor="#151920cc"
@@ -11,6 +15,7 @@ function ContainerBox({ children }: { children: React.ReactNode }) {
       borderColor="#2f343b"
       borderRadius={2}
       p={{ xs: 1, md: 2 }}
+      {...props}
     >
       {children}
     </Box>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -11,10 +11,22 @@ import {
   Groups2,
   Star,
   TipsAndUpdates,
+  Tune,
 } from "@mui/icons-material";
-import { Box, Divider, Stack, capitalize } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  Grid,
+  Skeleton,
+  Stack,
+  capitalize,
+} from "@mui/material";
 
-import { roles } from "@/utils";
 import {
   AUButton,
   ContainerBox,
@@ -23,12 +35,32 @@ import {
   Section,
 } from "@/components";
 
+import { RoleProps } from "@/utils/types";
+import { useDeleteRole, useRoleByName } from "./useRoles";
+import { replaceDash } from "@/utils";
+
 function Role({ role }: { role: string }) {
   const navigation = useRouter();
-  const curRole = roles.find(({ name }) => name === role);
+  const goBack = () => navigation.back();
+  const { deleteRole, isPending } = useDeleteRole();
+
+  const [open, setOpen] = useState(false);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
+
+  const {
+    role: curRole,
+    isLoading,
+  }: {
+    role: RoleProps;
+    isLoading: boolean;
+  } = useRoleByName();
+  const { _id, name, isActive, team, desc, tips, ability, mod } = curRole || {};
+
   useEffect(() => {
     document.title = capitalize(role);
   }, []);
+
   return (
     <Section>
       <Box
@@ -38,33 +70,45 @@ function Role({ role }: { role: string }) {
         mb={2}
       >
         <Section.Title gutterBottom={false}>
-          {role.replace("-", " ")}
+          {isLoading ? (
+            <Skeleton variant="rounded" width={160} animation="wave" />
+          ) : (
+            replaceDash(name)
+          )}
         </Section.Title>
 
-        <AUButton
-          onClick={() => navigation.back()}
-          sx={{ width: "fit-content" }}
-        >
-          back
-        </AUButton>
+        <AUButton onClick={goBack}>back</AUButton>
       </Box>
       <Divider sx={{ my: 3, display: { xs: "none", md: "inline" } }} />
       <ContainerBox>
-        <Box
-          display="flex"
-          flexDirection={{ xs: "column", md: "row" }}
-          gap={{ xs: 1, md: 2 }}
-        >
-          <RoleInfo icon={<Groups2 fontSize="small" />}>
-            {curRole?.team}
-          </RoleInfo>
-          {/* <RoleInfo icon={<CheckBox fontSize="small" />}>
-            {curRole?.isActive ? "Active" : "Inactive"}
-          </RoleInfo> */}
-          <RoleInfo icon={<Category fontSize="small" />}>
-            {curRole?.ability}
-          </RoleInfo>
-        </Box>
+        <Grid container spacing={{ xs: 1, sm: 2 }}>
+          <Grid item xs={12} sm={6} md={3} lg={3}>
+            <RoleInfo icon={<Groups2 fontSize="small" />} isLoading={isLoading}>
+              {team}
+            </RoleInfo>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3} lg={3}>
+            <RoleInfo
+              icon={<Category fontSize="small" />}
+              isLoading={isLoading}
+            >
+              {ability}
+            </RoleInfo>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <RoleInfo icon={<Tune fontSize="small" />} isLoading={isLoading}>
+              {mod?.length === 2 ? "both" : mod}
+            </RoleInfo>
+          </Grid>
+          <Grid item xs={12} sm={6} md={2} lg={3}>
+            <RoleInfo
+              icon={<CheckBox fontSize="small" />}
+              isLoading={isLoading}
+            >
+              {isActive ? "Active" : "Inactive"}
+            </RoleInfo>
+          </Grid>
+        </Grid>
         <Divider sx={{ my: { xs: 1, md: 2 } }} flexItem>
           <Star fontSize="small" />
         </Divider>
@@ -73,15 +117,15 @@ function Role({ role }: { role: string }) {
             <RoleDetails.Title>
               <Comment fontSize="small" /> Description
             </RoleDetails.Title>
-            <RoleDetails.Body>{curRole?.desc}</RoleDetails.Body>
+            <RoleDetails.Body isLoading={isLoading}>{desc}</RoleDetails.Body>
           </RoleDetails>
-          {!!curRole?.tips?.length && (
+          {!!tips?.length && (
             <RoleDetails>
               <RoleDetails.Title>
                 <TipsAndUpdates fontSize="small" /> Tips
               </RoleDetails.Title>
               <RoleDetails.Body>
-                {curRole.tips.map((tip: string, i) => (
+                {curRole.tips.map((tip: string, i: number) => (
                   <Box
                     key={i}
                     display="flex"
@@ -97,7 +141,47 @@ function Role({ role }: { role: string }) {
             </RoleDetails>
           )}
         </Stack>
+
+        <Stack spacing={2} direction="row" mt={2}>
+          <AUButton>Edit role</AUButton>
+          <AUButton onClick={handleOpenModal}>Delete role</AUButton>
+        </Stack>
       </ContainerBox>
+
+      <Dialog
+        open={open}
+        aria-labelledby="delete-dialog-title"
+        aria-describedby="delete-dialog-description"
+        sx={{ backdropFilter: "blur(1px)" }}
+        fullWidth
+        PaperProps={{ sx: { py: 2 } }}
+      >
+        <DialogTitle sx={{ py: 0 }} variant="h5" gutterBottom>
+          Are you sure?
+        </DialogTitle>
+        <DialogContent
+          sx={{ py: 0, pb: 2, mb: 2, borderBottom: 1, borderColor: "#565656" }}
+        >
+          Confirm that you are deleting the role '{role}'.
+        </DialogContent>
+
+        <DialogActions sx={{ py: 0, px: 3 }}>
+          <AUButton onClick={handleCloseModal}>Cancel</AUButton>
+          <AUButton
+            sx={{ color: "" }}
+            disabled={isPending}
+            onClick={() => deleteRole(_id, { onSuccess: goBack })}
+          >
+            {isPending ? (
+              <Box display="inline-flex" alignItems="center" gap={1}>
+                <CircularProgress size="0.7rem" color="inherit" /> Deleting...
+              </Box>
+            ) : (
+              "Confirm"
+            )}
+          </AUButton>
+        </DialogActions>
+      </Dialog>
     </Section>
   );
 }

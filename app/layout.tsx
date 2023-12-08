@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Container } from "@mui/material";
-import { Background, Header, ThemeProvider } from "@/components";
+import { Background, Header, Providers } from "@/components";
 
 export const metadata: Metadata = {
   title: "ModMaze",
   description: "Among us mod roles details website created by Soham Bhikadiya.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -19,15 +19,15 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.ico" sizes="any" />
       </head>
-      <ThemeProvider>
-        <body>
+      <body>
+        <Providers>
           <Background />
           <Header />
           <Container maxWidth="xl" sx={{ pt: "64px" }}>
             {children}
           </Container>
-        </body>
-      </ThemeProvider>
+        </Providers>
+      </body>
     </html>
   );
 }

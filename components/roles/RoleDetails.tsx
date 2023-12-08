@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 
 function RoleDetails({ children }: { children: React.ReactNode }) {
   return (
@@ -31,10 +31,20 @@ function Title({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Body({ children }: { children: React.ReactNode }) {
+function Body({
+  children,
+  isLoading,
+}: {
+  children: React.ReactNode;
+  isLoading?: boolean;
+}) {
   return (
-    <Box fontFamily="monospace" fontSize={{ xs: "14px", md: "16px" }}>
-      {children}
+    <Box fontFamily="sans-serif" fontSize="18px">
+      {isLoading ? (
+        <Skeleton variant="rounded" width="100%" height={28} animation="wave" />
+      ) : (
+        children
+      )}
     </Box>
   );
 }

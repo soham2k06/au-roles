@@ -27,11 +27,18 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/index.js",
+    "utils/index.ts",
     "utils/dbConntect.js",
     "utils/dbConntect.js",
     "utils/constants/index.js",
-    "components/index.js"
+    "components/index.js",
+    "components/roles/useRoles.ts",
+    "app/api/roles/route.ts",
+    "app/api/roles/[name]/route.ts",
+    "models/Admin.j",
+    "utils/lib/auth.ts",
+    "app/api/auth/[...nextauth]/route.ts",
+    "utils/dbConnect.js"
   ],
   "exclude": ["node_modules"]
 }
