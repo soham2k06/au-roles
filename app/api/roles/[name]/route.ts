@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import Role from "@/models/Role";
 import dbConnect from "@/utils/dbConnect";
+import { model } from "mongoose";
 
 export async function GET(
   _: any,
@@ -9,7 +10,7 @@ export async function GET(
 ) {
   try {
     await dbConnect();
-
+    // const Role = model("Role");
     const fetchedData = await Role.findOne({ name });
 
     return NextResponse.json(fetchedData, { status: 200 });

@@ -1,7 +1,11 @@
 import CredentialProvider from "next-auth/providers/credentials";
-import Admin from "@/models/Admin";
+
 import { NextAuthOptions } from "next-auth";
 import dbConnect from "./dbConnect";
+import mongoose from "mongoose";
+import { AdminProps } from "./types";
+
+import Admin from "@/models/Admin";
 
 export const authConfig: NextAuthOptions = {
   providers: [
@@ -16,10 +20,10 @@ export const authConfig: NextAuthOptions = {
         if (!credentials || !credentials.name || !credentials.password)
           return null;
         await dbConnect();
-        const dbUser = await Admin.findOne({
+        // const Admin = mongoose.model("Admin");
+        const dbUser: AdminProps | null = await Admin.findOne({
           name: credentials.name,
         }).lean();
-        console.log(typeof dbUser?.password);
         if (dbUser && dbUser.password === credentials.password) return dbUser;
         else return null;
       },

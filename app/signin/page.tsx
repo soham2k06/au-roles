@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 
 async function page() {
   const session = await getServerSession(authConfig);
-
   if (session) redirect("/admin");
 
   return (

@@ -1,9 +1,10 @@
 import { appBarItems, roles } from "./constants";
 
-function getHomeHref(status: string) {
-  return status === "authenticated" ? `http://localhost:3000//admin/` : "/";
+export function getHomeHref(status: string) {
+  const BASE_URL = process.env.BASE_URL;
+  return status === "authenticated" ? `/admin/` : "/";
 }
 
 const replaceDash = (str: string) => str?.replaceAll("-", " ");
 
-export { appBarItems, roles, getHomeHref, replaceDash };
+export { appBarItems, roles, replaceDash };

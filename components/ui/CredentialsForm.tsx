@@ -2,17 +2,9 @@
 
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { FormEventHandler, useEffect, useState } from "react";
+import { FormEventHandler, useState } from "react";
 
-import {
-  Alert,
-  Box,
-  Divider,
-  Link as LinkMUI,
-  Snackbar,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Divider, TextField, Typography } from "@mui/material";
 import { AUButton, FullPageLoader } from ".";
 import { ContainerBox } from "..";
 import { toast } from "sonner";

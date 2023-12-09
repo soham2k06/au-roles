@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import {
   Category,
@@ -40,6 +41,7 @@ import { useDeleteRole, useRoleByName } from "./useRoles";
 import { replaceDash } from "@/utils";
 
 function Role({ role }: { role: string }) {
+  const { status } = useSession();
   const navigation = useRouter();
   const goBack = () => navigation.back();
   const { deleteRole, isPending } = useDeleteRole();
@@ -142,46 +144,56 @@ function Role({ role }: { role: string }) {
           )}
         </Stack>
 
-        <Stack spacing={2} direction="row" mt={2}>
-          <AUButton>Edit role</AUButton>
-          <AUButton onClick={handleOpenModal}>Delete role</AUButton>
-        </Stack>
+        {status === "authenticated" && !isLoading && (
+          <Stack spacing={2} direction="row" mt={2}>
+            {/* <AUButton>Edit role</AUButton> */}
+            <AUButton onClick={handleOpenModal}>Delete role</AUButton>
+          </Stack>
+        )}
       </ContainerBox>
 
-      <Dialog
-        open={open}
-        aria-labelledby="delete-dialog-title"
-        aria-describedby="delete-dialog-description"
-        sx={{ backdropFilter: "blur(1px)" }}
-        fullWidth
-        PaperProps={{ sx: { py: 2 } }}
-      >
-        <DialogTitle sx={{ py: 0 }} variant="h5" gutterBottom>
-          Are you sure?
-        </DialogTitle>
-        <DialogContent
-          sx={{ py: 0, pb: 2, mb: 2, borderBottom: 1, borderColor: "#565656" }}
+      {status === "authenticated" && (
+        <Dialog
+          open={open}
+          aria-labelledby="delete-dialog-title"
+          aria-describedby="delete-dialog-description"
+          sx={{ backdropFilter: "blur(1px)" }}
+          fullWidth
+          PaperProps={{ sx: { py: 2 } }}
         >
-          Confirm that you are deleting the role '{role}'.
-        </DialogContent>
-
-        <DialogActions sx={{ py: 0, px: 3 }}>
-          <AUButton onClick={handleCloseModal}>Cancel</AUButton>
-          <AUButton
-            sx={{ color: "" }}
-            disabled={isPending}
-            onClick={() => deleteRole(_id, { onSuccess: goBack })}
+          <DialogTitle sx={{ py: 0 }} variant="h5" gutterBottom>
+            Are you sure?
+          </DialogTitle>
+          <DialogContent
+            sx={{
+              py: 0,
+              pb: 2,
+              mb: 2,
+              borderBottom: 1,
+              borderColor: "#565656",
+            }}
           >
-            {isPending ? (
-              <Box display="inline-flex" alignItems="center" gap={1}>
-                <CircularProgress size="0.7rem" color="inherit" /> Deleting...
-              </Box>
-            ) : (
-              "Confirm"
-            )}
-          </AUButton>
-        </DialogActions>
-      </Dialog>
+            Confirm that you are deleting the role '{role}'.
+          </DialogContent>
+
+          <DialogActions sx={{ py: 0, px: 3 }}>
+            <AUButton onClick={handleCloseModal}>Cancel</AUButton>
+            <AUButton
+              sx={{ color: "" }}
+              disabled={isPending}
+              onClick={() => deleteRole(_id, { onSuccess: goBack })}
+            >
+              {isPending ? (
+                <Box display="inline-flex" alignItems="center" gap={1}>
+                  <CircularProgress size="0.7rem" color="inherit" /> Deleting...
+                </Box>
+              ) : (
+                "Confirm"
+              )}
+            </AUButton>
+          </DialogActions>
+        </Dialog>
+      )}
     </Section>
   );
 }

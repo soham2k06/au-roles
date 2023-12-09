@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import Role from "@/models/Role";
 import dbConnect from "@/utils/dbConnect";
+import { model } from "mongoose";
+import Role from "@/models/Role";
 
 export async function POST(req: NextRequest) {
   try {
     const { query, selector } = await req.json();
 
     await dbConnect();
+    // const Role = model("Role");
     const fetchedData = selector
       ? await Role.find(query).select(selector)
       : await Role.find(query);
@@ -26,6 +28,7 @@ export async function DELETE(req: NextRequest) {
     await dbConnect();
 
     const { _id } = await req.json();
+    // const Role = model("Role");
     const res = await Role.deleteOne({ _id });
 
     return NextResponse.json(res);

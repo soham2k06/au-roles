@@ -30,7 +30,6 @@ function Header() {
   const pathName = usePathname();
 
   const homeHref = getHomeHref(status);
-
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -122,7 +121,7 @@ function Header() {
                 {appBarItems.map((item) => (
                   <MenuItem key={item} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
-                      <Link href={"/admin/" + item}>{item}</Link>
+                      <Link href={homeHref + item}>{item}</Link>
                     </Typography>
                   </MenuItem>
                 ))}
@@ -138,7 +137,7 @@ function Header() {
             }}
           >
             {appBarItems.map((item) => (
-              <Link key={item} href={"/admin/" + item}>
+              <Link key={item} href={homeHref + item}>
                 <Button
                   color="inherit"
                   key={item}

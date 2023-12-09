@@ -2,13 +2,12 @@ import { toast } from "sonner";
 import { RoleProps } from "./types";
 import { ObjectId } from "mongoose";
 
-const BASE_API = "http://localhost:3000/api/roles/";
-// const BASE_API = process.env.BASE_API;
+const BASE_API = process.env.NEXT_PUBLIC_BASE_API;
 
 type RolePropForm = Omit<RoleProps, "_id">;
 
 export async function getRoles(query: object, selector: string) {
-  const res = await fetch(BASE_API, {
+  const res = await fetch(BASE_API as string, {
     method: "POST",
     body: JSON.stringify({ query, selector }),
   });
@@ -43,7 +42,7 @@ export async function createRole(newData: RolePropForm) {
 }
 
 export async function editRole(editedData: any) {
-  const res = await fetch(BASE_API, {
+  const res = await fetch(BASE_API as string, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(editedData),
@@ -53,7 +52,7 @@ export async function editRole(editedData: any) {
   return res.json();
 }
 export async function deleteRole(_id: ObjectId) {
-  const res = await fetch(BASE_API, {
+  const res = await fetch(BASE_API as string, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ _id }),

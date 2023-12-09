@@ -38,7 +38,9 @@
     "models/Admin.j",
     "utils/lib/auth.ts",
     "app/api/auth/[...nextauth]/route.ts",
-    "utils/dbConnect.js"
+    "utils/dbConnect.js",
+    "models/Admin.ts",
+    "models/Role.js"
   ],
   "exclude": ["node_modules"]
 }
