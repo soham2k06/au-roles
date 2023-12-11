@@ -5,16 +5,6 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 import {
-  Category,
-  CheckBox,
-  Circle,
-  Comment,
-  Groups2,
-  Star,
-  TipsAndUpdates,
-  Tune,
-} from "@mui/icons-material";
-import {
   Box,
   CircularProgress,
   Dialog,
@@ -29,6 +19,17 @@ import {
 } from "@mui/material";
 
 import {
+  Category,
+  CheckBox,
+  Circle,
+  Comment,
+  Groups2,
+  Star,
+  TipsAndUpdates,
+  Tune,
+} from "@mui/icons-material";
+
+import {
   AUButton,
   ContainerBox,
   RoleDetails,
@@ -36,9 +37,9 @@ import {
   Section,
 } from "@/components";
 
-import { RoleProps } from "@/utils/types";
 import { useDeleteRole, useRoleByName } from "./useRoles";
 import { replaceDash } from "@/utils";
+import { RoleProps } from "@/types";
 
 function Role({ role }: { role: string }) {
   const { status } = useSession();
@@ -52,10 +53,10 @@ function Role({ role }: { role: string }) {
 
   const {
     role: curRole,
-    isLoading,
+    isFetching: isLoading,
   }: {
     role: RoleProps;
-    isLoading: boolean;
+    isFetching: boolean;
   } = useRoleByName();
   const { _id, name, isActive, team, desc, tips, ability, mod } = curRole || {};
 

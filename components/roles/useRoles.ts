@@ -12,28 +12,41 @@ import {
 
 import { useParams } from "next/navigation";
 import { ObjectId } from "mongoose";
-import { RoleProps } from "@/utils/types";
+import { RoleProps } from "@/types";
 
 type RolePropForm = Omit<RoleProps, "_id">;
 
 export function useRoles(query: object, selector: string) {
-  const { data: roles, isLoading } = useQuery({
+  const {
+    data: roles,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ["roles"],
     queryFn: () => getRoles(query, selector),
   });
 
-  return { roles, isLoading };
+  return { roles, isLoading, isFetching };
 }
 
 export function useRoleByName() {
+  const queryClient = useQueryClient();
   const { slug }: { slug: string } = useParams();
 
-  const { data: role, isLoading } = useQuery({
+  const {
+    data: role,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ["role"],
-    queryFn: () => getRoleByName(slug),
+    queryFn: () => {
+      queryClient.refetchQueries({ queryKey: ["role", slug] });
+      return getRoleByName(slug);
+    },
+    refetchOnWindowFocus: false,
   });
 
-  return { role, isLoading };
+  return { role, isLoading, isFetching };
 }
 
 export function useCreateRole() {

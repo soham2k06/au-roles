@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 
 import { Add, Close, Remove } from "@mui/icons-material";
-import { RoleErrors, RoleProps } from "@/utils/types";
+import { RoleErrors, RoleProps } from "@/types";
 import { useCreateRole, useRoles } from "./useRoles";
 
 type Ommited = Omit<RoleProps, "_id" | "tips">;

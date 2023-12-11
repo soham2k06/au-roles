@@ -8,13 +8,20 @@ import { FullPageLoader, GlassButton, Section } from "@/components";
 import { useSession } from "next-auth/react";
 import { getHomeHref, replaceDash } from "@/utils";
 import { useRoles } from "./useRoles";
+import { RoleProps } from "@/types";
 
 function Roles({
   roleTeam,
 }: {
   roleTeam: "crewmate" | "neutral" | "impostor" | "add-on";
 }) {
-  const { roles, isLoading } = useRoles({ team: roleTeam }, "name");
+  const {
+    roles,
+    isFetching: isLoading,
+  }: { roles: RoleProps[]; isFetching: boolean } = useRoles(
+    { team: roleTeam },
+    "name"
+  );
 
   const { status } = useSession();
   const homeHref = getHomeHref(status);
@@ -28,8 +35,8 @@ function Roles({
     <Section>
       <Section.Title>{roleTeam} roles</Section.Title>
       <Grid container spacing={{ xs: 1, md: 2 }} mb={3}>
-        {roles?.map(({ name, _id }: { name: string; _id: string }) => (
-          <Grid key={_id} item xs={6} sm={4} md={3} lg={2}>
+        {roles.map(({ name }, i: number) => (
+          <Grid key={i} item xs={6} sm={4} md={3} lg={2}>
             <Link
               href={`${homeHref + roleTeam}/[slug]`}
               as={`${homeHref + roleTeam}/${name}`}
