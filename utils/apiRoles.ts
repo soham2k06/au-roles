@@ -1,5 +1,5 @@
 import { toast } from "sonner";
-import { RoleProps } from "./types";
+import { RoleProps } from "../types";
 import { ObjectId } from "mongoose";
 
 const BASE_API = process.env.NEXT_PUBLIC_BASE_API;

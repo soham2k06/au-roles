@@ -1,5 +1,5 @@
 // import { Schema, model } from "mongoose";
-import { RoleProps } from "@/utils/types";
+import { RoleProps } from "@/types";
 
 // const RoleSchema = new Schema<RoleProps>({
 //   name: { type: String, required: true },

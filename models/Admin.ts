@@ -1,6 +1,6 @@
 import { Schema, model, InferSchemaType } from "mongoose";
 
-import { AdminProps } from "@/utils/types";
+import { AdminProps } from "@/types";
 
 const AdminSchema = new Schema<AdminProps>(
   {

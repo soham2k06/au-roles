@@ -3,7 +3,7 @@ import CredentialProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
 import dbConnect from "./dbConnect";
 import mongoose from "mongoose";
-import { AdminProps } from "./types";
+import { AdminProps } from "@/types";
 
 import Admin from "@/models/Admin";
 
