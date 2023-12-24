@@ -83,3 +83,7 @@ a {
 .MuiPopper-root {
   background-color: #1a1e26;
 }
+
+.MuiInputBase-input.Mui-disabled {
+  -webkit-text-fill-color: #afb8c4 !important;
+}

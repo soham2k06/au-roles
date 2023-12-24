@@ -6,7 +6,6 @@ import {
   Autocomplete,
   Box,
   Checkbox,
-  Chip,
   CircularProgress,
   Dialog,
   DialogContent,
@@ -29,7 +28,6 @@ interface NewRoleProps extends Ommited {
 }
 
 function CreateRole() {
-  // Form Dialog
   const [open, setOpen] = useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
@@ -40,7 +38,6 @@ function CreateRole() {
         Create roles
       </AUButton>
       {open && <Form open={open} handleCloseModal={handleCloseModal} />}
-      {/* <Form open={open} handleCloseModal={handleCloseModal} /> */}
     </>
   );
 }
@@ -54,7 +51,7 @@ function Form({
 }) {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
-  const { roles } = useRoles({}, "ability") as { roles: RoleProps[] };
+  const { roles } = useRoles({}, ["ability"]) as { roles: RoleProps[] };
   const abilities = Array.from(new Set(roles?.map(({ ability }) => ability)));
 
   const { createRole, isPending } = useCreateRole();
@@ -64,7 +61,7 @@ function Form({
     name: "",
     team: "",
     ability: "",
-    mod: [],
+    mod: "",
     desc: "",
     tip: "",
     isActive: false,
@@ -82,7 +79,7 @@ function Form({
   const { ability, desc, isActive, mod, name, team, tip } = formdata;
 
   // Tips
-  const [tips, setTips] = useState<string[]>([]);
+  const [tips, setTips] = useState<RoleProps["tips"]>([]);
 
   const handleAddTip = () => {
     if (tip.trim() !== "") {
@@ -102,7 +99,7 @@ function Form({
     name,
     value,
   }: {
-    name: string;
+    name: keyof RoleProps | "tip";
     value: string | boolean | string[];
   }) {
     setFormdata({ ...formdata, [name]: value });
@@ -120,7 +117,7 @@ function Form({
     if (!name.trim()) error.name = true;
     if (!team) error.team = true;
     if (!ability) error.ability = true;
-    if (!mod || !mod.length) error.mod = true;
+    if (!mod) error.mod = true;
     if (!desc) error.desc = true;
 
     setFormError(error);
@@ -139,7 +136,7 @@ function Form({
       { onSuccess: handleCloseModal }
     );
   }
-
+  console.log(formdata);
   return (
     <Dialog
       open={open}
@@ -193,7 +190,7 @@ function Form({
                 onChange={(e) =>
                   handleChange({
                     name: "name",
-                    value: e.target.value.replace(" ", "-"),
+                    value: e.target.value.replace(" ", "-").toLowerCase(),
                   })
                 }
               />
@@ -256,44 +253,29 @@ function Form({
 
               {/* mod */}
               <Autocomplete
-                multiple
+                id="role-mod"
                 fullWidth
-                id="mod-name"
+                disableClearable
+                forcePopupIcon={false}
                 size={isSmallScreen ? "small" : "medium"}
                 options={["Town Of Host", "Town Of Host Enhanced"].map(
                   (opt) => opt
                 )}
-                popupIcon=""
-                value={mod}
-                onChange={(_, value) => handleChange({ name: "mod", value })}
-                filterSelectedOptions
-                renderOption={(props, option) => {
-                  return (
-                    <li {...props} key={option}>
-                      {option}
-                    </li>
-                  );
-                }}
-                renderTags={(tagValue, getTagProps) => {
-                  return tagValue.map((option, index) => (
-                    <Chip
-                      {...getTagProps({ index })}
-                      key={option}
-                      label={option}
-                    />
-                  ));
-                }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    variant="filled"
+                    label="Mod*"
                     error={formError.mod}
                     InputLabelProps={{
                       sx: { fontSize: { xs: "20px", sm: "24px" } },
                     }}
-                    label="Mod*"
+                    variant="filled"
                   />
                 )}
+                inputValue={mod}
+                onInputChange={(_, value) =>
+                  handleChange({ name: "mod", value })
+                }
               />
             </Box>
 

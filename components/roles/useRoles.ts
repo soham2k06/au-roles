@@ -16,21 +16,21 @@ import { RoleProps } from "@/types";
 
 type RolePropForm = Omit<RoleProps, "_id">;
 
-export function useRoles(query: object, selector: string) {
+export function useRoles(query: object, selectors?: string[]) {
   const {
     data: roles,
     isLoading,
     isFetching,
+    refetch,
   } = useQuery({
     queryKey: ["roles"],
-    queryFn: () => getRoles(query, selector),
+    queryFn: () => getRoles(query, selectors),
   });
 
-  return { roles, isLoading, isFetching };
+  return { roles, isLoading, isFetching, refetch };
 }
 
 export function useRoleByName() {
-  const queryClient = useQueryClient();
   const { slug }: { slug: string } = useParams();
 
   const {
@@ -38,12 +38,8 @@ export function useRoleByName() {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ["role"],
-    queryFn: () => {
-      queryClient.refetchQueries({ queryKey: ["role", slug] });
-      return getRoleByName(slug);
-    },
-    refetchOnWindowFocus: false,
+    queryKey: ["role", slug],
+    queryFn: () => getRoleByName(slug),
   });
 
   return { role, isLoading, isFetching };
@@ -68,11 +64,16 @@ export function useEditRole() {
   const queryClient = useQueryClient();
 
   const { mutate: editRole, isPending } = useMutation({
-    mutationFn: editRoleApi,
-    onSuccess: (data: RoleProps) => {
-      toast.success(`${data.name} is successfully updated`);
-      queryClient.invalidateQueries({ queryKey: ["roles"] });
-    },
+    mutationFn: ({
+      _id,
+      fieldToUpdate,
+      newValue,
+    }: {
+      _id: ObjectId;
+      fieldToUpdate: keyof RoleProps;
+      newValue: any;
+    }) => editRoleApi({ _id, fieldToUpdate, newValue }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["role"] }),
     onError: (err) => toast.error(err.message),
   });
 
@@ -82,10 +83,14 @@ export function useEditRole() {
 export function useDeleteRole() {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteRole, isPending } = useMutation({
+  const {
+    mutate: deleteRole,
+    isPending,
+    data,
+  } = useMutation({
     mutationFn: (_id: ObjectId) => deleteRoleApi(_id),
-    onSuccess: (data: RoleProps) => {
-      toast.success(`${data.name} is successfully deleted`);
+    onSuccess: () => {
+      toast.success(`Role is successfully deleted`);
       queryClient.invalidateQueries({ queryKey: ["roles"] });
     },
     onError: (err) => toast.error(err.message),

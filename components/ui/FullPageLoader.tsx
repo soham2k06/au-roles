@@ -8,9 +8,8 @@ function FullPageLoader() {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      height="calc(100vh - 64px)"
+      height="calc(100svh - 64px)"
     >
-      {/* <CircularProgress sx={{ color: "white" }} /> */}
       <Typography variant="h5">
         Loading
         {Array.from({ length: 3 }, (_, i) => (

@@ -12,7 +12,10 @@ function Title({ children, ...typographyProps }: TitleProps) {
   return (
     <Typography
       variant="h3"
-      fontSize={{ xs: 32, sm: 40 }}
+      display="flex"
+      alignItems="center"
+      fontSize={{ xs: 28, sm: 40 }}
+      textAlign={{ xs: "center", sm: "left" }}
       gutterBottom
       textTransform="capitalize"
       {...typographyProps}

@@ -21,12 +21,16 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { GlassButton } from "..";
 import { appBarItems, getHomeHref } from "@/utils";
+import { useSessionContext } from "@/contexts";
 
 function Header() {
-  const { status } = useSession();
+  const {
+    session: { status },
+    isAuthenticated,
+  } = useSessionContext();
   const pathName = usePathname();
 
   const homeHref = getHomeHref(status);
@@ -157,7 +161,7 @@ function Header() {
           <Box display="flex">
             {status === "loading" ? (
               <Skeleton width={120} height={64} animation="wave"></Skeleton>
-            ) : status !== "authenticated" ? (
+            ) : !isAuthenticated ? (
               <Link href="https://discord.gg/8reVZ4WC6Q" target="_blank">
                 <Button
                   sx={{

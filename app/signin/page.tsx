@@ -12,7 +12,7 @@ async function page() {
   return (
     <Box
       display="flex"
-      height="100vh"
+      height="100svh"
       justifyContent="center"
       mt="-64px"
       alignItems="center"

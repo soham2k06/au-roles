@@ -9,7 +9,7 @@ function Background() {
         position: "fixed",
         display: "block",
         width: "100vw",
-        height: "100vh",
+        height: "100svh",
         overflow: "hidden",
         zIndex: -1,
       }}
@@ -21,7 +21,7 @@ function Background() {
           sx={{
             width: random(1, 3),
             height: random(1, 3),
-            top: random(0, 100) + "vh",
+            top: random(0, 100) + "svh",
             borderRadius: "50%",
             background: "white",
             position: "absolute",

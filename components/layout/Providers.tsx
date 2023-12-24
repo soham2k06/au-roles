@@ -1,5 +1,6 @@
 "use client";
 
+import { SessionContextProvider } from "@/contexts";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -39,7 +40,7 @@ function Providers({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Toaster richColors theme="dark" />
-          {children}
+          <SessionContextProvider>{children}</SessionContextProvider>
         </ThemeProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </SessionProvider>

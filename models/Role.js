@@ -9,7 +9,7 @@ module.exports =
       ability: String,
       isActive: Boolean,
       desc: String,
-      mod: Array,
+      mod: String,
       tips: Array,
       createdAt: {
         type: Date,

@@ -5,7 +5,7 @@ async function Hero() {
   return (
     <Box
       sx={{
-        height: "calc(100vh - 64px)",
+        height: "calc(100svh - 64px)",
         textAlign: "center",
         display: "flex",
         alignItems: "center",

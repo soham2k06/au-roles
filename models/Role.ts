@@ -23,7 +23,7 @@ const Role = new Schema<RoleProps>(
     team: { type: String, required: true },
     ability: { type: String, required: true },
     desc: { type: String, required: true },
-    mod: { type: [String], required: true },
+    mod: { type: String, required: true },
     tips: { type: [String], required: false },
     isActive: { type: Boolean, required: true },
   },

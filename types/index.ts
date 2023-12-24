@@ -7,7 +7,7 @@ export interface RoleProps {
   team: string;
   desc: string;
   tips: string[];
-  mod: string[];
+  mod: string;
   ability: string;
 }
 

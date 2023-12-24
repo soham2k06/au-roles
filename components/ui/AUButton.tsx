@@ -7,14 +7,14 @@ interface AUButtonProps extends ButtonProps {
 }
 
 function AUButton({ children, ...props }: AUButtonProps) {
-  let audio: HTMLAudioElement;
+  // let audio: HTMLAudioElement;
 
-  try {
-    audio = new Audio("/audio/button.mp3");
-    audio.volume = 0.05;
-  } catch (error) {
-    console.error("Error creating Audio object:", error);
-  }
+  // try {
+  //   audio = new Audio("/audio/button.mp3");
+  //   audio.volume = 0.05;
+  // } catch (error) {
+  //   console.error("Error creating Audio object:", error);
+  // }
   return (
     <Button
       variant="outlined"
@@ -34,12 +34,13 @@ function AUButton({ children, ...props }: AUButtonProps) {
         ":active": {
           borderColor: "lime",
         },
+        width: "fit-content",
 
         ...props.sx,
       }}
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         props.onClick?.(e);
-        audio.play();
+        // audio.play();
       }}
       disableRipple
       type={props.type}

@@ -6,10 +6,10 @@ const BASE_API = process.env.NEXT_PUBLIC_BASE_API;
 
 type RolePropForm = Omit<RoleProps, "_id">;
 
-export async function getRoles(query: object, selector: string) {
+export async function getRoles(query: object, selectors?: string[]) {
   const res = await fetch(BASE_API as string, {
     method: "POST",
-    body: JSON.stringify({ query, selector }),
+    body: JSON.stringify({ query, selectors }),
   });
 
   if (!res.ok) {
@@ -41,16 +41,25 @@ export async function createRole(newData: RolePropForm) {
   return res.json();
 }
 
-export async function editRole(editedData: any) {
+export async function editRole({
+  _id,
+  fieldToUpdate,
+  newValue,
+}: {
+  _id: ObjectId;
+  fieldToUpdate: keyof RoleProps;
+  newValue: any;
+}) {
   const res = await fetch(BASE_API as string, {
-    method: "PATCH",
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(editedData),
+    body: JSON.stringify({ _id, fieldToUpdate, newValue }),
   });
 
   if (!res.ok) throw new Error("Network response was not ok");
   return res.json();
 }
+
 export async function deleteRole(_id: ObjectId) {
   const res = await fetch(BASE_API as string, {
     method: "DELETE",

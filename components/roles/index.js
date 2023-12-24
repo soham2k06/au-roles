@@ -1,7 +1,7 @@
-import RoleInfo from "./RoleInfo";
 import RoleDetails from "./RoleDetails";
 import Roles from "./Roles";
 import Role from "./Role";
 import CreateRole from "./CreateRole";
+import RoleInfos from "./RoleInfos";
 
-export { Role, RoleDetails, RoleInfo, Roles, CreateRole };
+export { Role, RoleDetails, RoleInfos, Roles, CreateRole };

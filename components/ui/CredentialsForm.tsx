@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
 
@@ -9,9 +9,12 @@ import { AUButton, FullPageLoader } from ".";
 import { ContainerBox } from "..";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useSessionContext } from "@/contexts";
 
 function CredentialsForm() {
-  const { status: sessionStatus } = useSession();
+  const {
+    session: { status: sessionStatus },
+  } = useSessionContext();
   const router = useRouter();
 
   const [name, setName] = useState<string | null>("");

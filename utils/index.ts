@@ -6,4 +6,7 @@ export function getHomeHref(status: string) {
 
 const replaceDash = (str: string) => str?.replaceAll("-", " ");
 
-export { appBarItems, roles, replaceDash };
+const getShortForm = (mainStr: string) =>
+  mainStr.split(" ").map((str: string) => str.slice(0, 1));
+
+export { appBarItems, roles, replaceDash, getShortForm };
