@@ -82,10 +82,8 @@ function Roles({
   if (isLoading) return <FullPageLoader />;
 
   const rolesByMod: RoleProps[] = roles.filter((role) => {
-    // console.log(tabs.find((tab) => tab.id === value)?.label);
     return role.mod === tabs.find((tab) => tab.id === value)?.label;
   });
-  console.log(value);
 
   return (
     <Section>

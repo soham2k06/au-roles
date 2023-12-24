@@ -19,6 +19,7 @@ import {
   TextField,
   Typography,
   styled,
+  useMediaQuery,
 } from "@mui/material";
 
 import { useState } from "react";
@@ -83,6 +84,7 @@ function AutoCompleteOwn({
   fieldToUpdate,
   onChange,
 }: AutocompleteProps) {
+  const isSmallScreen = useMediaQuery("(max-width:900px)");
   return (
     <Autocomplete
       id={name}
@@ -92,6 +94,7 @@ function AutoCompleteOwn({
       forcePopupIcon={false}
       options={options.map((option) => option)}
       disabled={disabled}
+      size={isSmallScreen ? "small" : "medium"}
       onSelect={() => {}}
       renderInput={(params) => (
         <CustomTextField
@@ -156,6 +159,7 @@ function RoleInfos({
   mod,
   isActive,
 }: RoleInfosProps) {
+  const isSmallScreen = useMediaQuery("(max-width:900px)");
   const { isAuthenticated } = useSessionContext();
   const { roles } = useRoles({}, ["ability"]) as { roles: RoleProps[] };
   const abilities = Array.from(new Set(roles?.map(({ ability }) => ability)));
@@ -229,8 +233,10 @@ function RoleInfos({
             bgcolor="transparent"
             display="flex"
             justifyContent="space-between"
+            alignItems="center"
             width="100%"
-            p="10.5px"
+            height={isSmallScreen ? "42.88px" : "58.88px"}
+            p={isSmallScreen ? "6px" : "10.5px"}
             color="#afb8c4"
             sx={{ cursor: !disabled ? "pointer" : "default" }}
             component="button"
@@ -239,8 +245,14 @@ function RoleInfos({
             }
             disabled={!isAuthenticated || isLoading || isPending}
           >
-            <CheckBox />
-            <Typography>{isActive ? "active" : "inactive"}</Typography>
+            <CheckBox fontSize="small" />
+            <Typography
+              fontFamily="sans-serif"
+              fontSize="150%"
+              textTransform="capitalize"
+            >
+              {isActive ? "active" : "inactive"}
+            </Typography>
           </Box>
         </RoleInfo>
       </Grid>
