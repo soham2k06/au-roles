@@ -13,7 +13,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FullPageLoader, GlassButton, Section } from "@/components";
 
-import { useSession } from "next-auth/react";
 import { getHomeHref, getShortForm, replaceDash } from "@/utils";
 import { useRoles } from "./useRoles";
 import { RoleProps } from "@/types";
